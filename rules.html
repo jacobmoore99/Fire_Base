@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            SURVIVOR CENTRAL
+        </title>
+
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+                
+    </head>
+    <body style="background-color: #ff8000">
+
+        <nav>
+            <div class="nav-wrapper" style="background-color: #000080">
+                <a href="#" class="brand-logo center" style="background-color: #000080; background-image: #000080">SURVIVOR CENTRAL</a>
+                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+                        <li><a href="#login_modal" id = "login_nav" class = "modal-trigger" style="background-color: #000080">Login/Sign Up</a></li>
+                        <li><a href="home.html" id = "home_nav">Home</a></li>
+                        <li><a href="index.html" id = "forums_nav">Forums</a></li>
+                        <li><a href="rules.html" id = "rules_nav">Rules</a></li>
+                    </ul>
+            </div>
+        </nav>
+
+        <!-- Modal Structure -->
+        <div id="login_modal" class="modal">
+            <div class="modal-content">
+                <form id="login-form" autocomplete = "off">
+                    <div class="input-field">
+                        <input type="email" id="user_name" autocomplete="" required />
+                        <label for="user_name">User Name</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="user_password" autocomplete="" required />
+                        <label for="user_password">Password</label>
+                    </div>
+                    
+                    <button class="btn green darken-2 z-depth-0">Sign Up</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Create New User</a>
+            </div>
+        </div>
+       
+       <p style="text-align: center; color: white; font-size: 24px">These forums are purely for fun and entertainment, therefore, it is very important that users follow these rules:<br><br>#1 - Be civil. Treat people how you want to be treated and do not get personal.<br><br>#2 - No spoilers. Do not spoil new episodes, or events further into the season in episode threads. If your discussion contains any spoilers, make sure that you include a spoiler warning in your thread title.<br><br>#3 - No hate speech. This is completely unacceptable in the Survivor Central forums and will result in an instant ban. A statement that carries no meaning other than an expression of hatred, which is intended to demean and brutalize another by the use of cruel and derogatory language.<br><br>#4 - No political debates. Survivor Central is a TV SHOW discussion platform, not a news site. Therefore, there should be no discussion regarding the political beliefs of users.<br><br>#5 - Help us out. If there is a problem or a user that you would like to report, please email a moderator with the situation you have encountered. This will help to make Survivor Central a better place for all users</p>
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <script>
+
+
+            document.addEventListener('DOMContentLoaded', function() {
+                options = []
+                var elems = document.querySelectorAll('.modal');
+                console.log(elems)
+                var instances = M.Modal.init(elems, options);
+            });
+
+        </script>
+        <script src = "auth.js"></script>
+
+
+    </body>
+</html>

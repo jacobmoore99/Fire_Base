@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            SURVIVOR CENTRAL
+        </title>
+
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+                
+    </head>
+    
+
+    <script type="text/javascript">
+        var admin = require("firebase-admin");
+
+        var serviceAccount = require("path/to/serviceAccountKey.json");
+
+        admin.initializeApp({
+          credential: admin.credential.cert(serviceAccount),
+          databaseURL: "https://setup-11eef-default-rtdb.firebaseio.com"
+        });
+    </script>
+
+    <body style="background-color: #ff8000">
+
+        <nav>
+            <div class="nav-wrapper" style="background-color: #000080">
+                <a href="#" class="brand-logo center" style="background-color: #000080; background-image: #000080">SURVIVOR CENTRAL</a>
+                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+                        <li><a href="#login_modal" id = "login_nav" class = "modal-trigger" style="background-color: #000080">Login/Sign Up</a></li>
+                        <li><a href="home.html" id = "home_nav">Home</a></li>
+                        <li><a href="index.html" id = "forums_nav">Forums</a></li>
+                        <li><a href="rules.html" id = "rules_nav">Rules</a></li>
+                    </ul>
+            </div>
+        </nav>
+
+        <!-- Modal Structure -->
+        <div id="login_modal" class="modal">
+            <div class="modal-content">
+                <form id="login-form" autocomplete = "off">
+                    <div class="input-field">
+                        <input type="email" id="user_name" autocomplete="" required />
+                        <label for="user_name">User Name</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="user_password" autocomplete="" required />
+                        <label for="user_password">Password</label>
+                    </div>
+                    
+                    <button class="btn green darken-2 z-depth-0">Sign Up</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Create New User</a>
+            </div>
+        </div>
+
+        <center><div style="display: flex; flex-wrap: wrap;">
+            <button type="button" class="button" id="clickMe" style="color: white; background-color: #00b300; border: 10px; border-color: black; height: 50px; width: 200px;text-align: center; text-decoration: none;display: inline-block;font-size: 24px; margin: 4px 2px; cursor: pointer;">Start New Topic</button>
+            <input style="font-size:18px; height: 50px; width: 200px; background-color: white; margin: 4px 2px" type="text" id="search" name ="search">
+        </div></center>
+        
+        <style>
+        table {
+          font-family: calibri, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+        tr:nth-child(odd) {
+          background-color: #ffffff;
+        }
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+        <table>
+          <tr>
+            <th>User</th>
+            <th>Thread</th>
+            <th>Ratings</th>
+          </tr>
+          <tr>
+            <td>Alfreds Futterkiste</td>
+            <td><input type="text" placeholder="Link here" id="thread1"><button type="button" class="button" id="1thread" onclick = "writeData()">Publish Thread</button></td>
+            <td>Germany</td>
+          </tr>
+          <tr>
+            <td>Centro comercial Moctezuma</td>
+            <td><input type="text" placeholder="Link here" id="thread2"><button type="button" class="button" id="2thread" onclick = "writeData()">Publish Thread</button></td>
+            <td>Mexico</td>
+          </tr>
+          <tr>
+            <td>Ernst Handel</td>
+            <td><input type="text" placeholder="Link here" id="thread3"><button type="button" class="button" id="3thread" onclick = "writeData()">Publish Thread</button></td>
+            <td>Austria</td>
+          </tr>
+          <tr>
+            <td>Island Trading</td>
+            <td><input type="text" placeholder="Link here" id="thread4"><button type="button" class="button" id="4thread" onclick = "writeData()">Publish Thread</button></td>
+            <td>UK</td>
+          </tr>
+          <tr>
+            <td>Laughing Bacchus Winecellars</td>
+            <td><input type="text" placeholder="Link here" id="thread5"><button type="button" class="button" id="5thread" onclick = "writeData()">Publish Thread</button></td>
+            <td>Canada</td>
+          </tr>
+          <tr>
+            <td>Magazzini Alimentari Riuniti</td>
+            <td><input type="text" placeholder="Link here" id="thread6"><button type="button" class="button" id="6thread" onclick = "writeData()">Publish Thread</button></td>
+            <td>Italy</td>
+          </tr>
+        </table>
+
+        <script>
+
+        function writeData() {
+            firebase.database().ref("Value").set({
+                name: document.getElementById("thread1").value,
+            });
+        }
+
+        </script>
+
+        <script>
+
+
+            document.addEventListener('DOMContentLoaded', function() {
+                options = []
+                var elems = document.querySelectorAll('.modal');
+                console.log(elems)
+                var instances = M.Modal.init(elems, options);
+            });
+
+        </script>
+        <script src = "auth.js"></script>
+
+    </body>
+</html>
