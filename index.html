@@ -53,28 +53,46 @@
         </div>
         
         <script>
-            var provider = new firebase.auth.GoogleAuthProvider();
-            var userId = document.getElementById("uid").innerHTML;
-            var config = {
-                apiKey: "AIzaSyAl6cJJZxneO2pVcCcNgrsDqfIXpgwA1Zg",
-                authDomain: "setup-11eef.firebaseapp.com",
-                databaseURL: "https://setup-11eef-default-rtdb.firebaseio.com",
-                projectId: "setup-11eef",
-                storageBucket: "setup-11eef.appspot.com",
-                messagingSenderId: "1063490417977",
-                appId: "1:1063490417977:web:d64b481603113fa6be64e8",
-                measurementId: "G-MZP0MQ6K7T"
-             };
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAl6cJJZxneO2pVcCcNgrsDqfIXpgwA1Zg",
+            authDomain: "setup-11eef.firebaseapp.com",
+            databaseURL: "https://setup-11eef-default-rtdb.firebaseio.com",
+            projectId: "setup-11eef",
+            storageBucket: "setup-11eef.appspot.com",
+            messagingSenderId: "1063490417977",
+            appId: "1:1063490417977:web:d64b481603113fa6be64e8",
+            measurementId: "G-MZP0MQ6K7T"
+          };
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+          firebase.analytics();
         </script>
 
-        <script>    
+        <script>
                 function writeData1() {
 
                     var u1 = document.getElementById("user1")
-                    var x = document.getElementById("user_name");
+                    var x = document.getElementById("user_name")
+                    var today = new Date();
+                    var dd = String(today.getDate()).padStart(2, '0');
+                    var mm = String(today.getMonth() + 1).padStart(2, '0');
+                    var yyyy = today.getFullYear();
+
+                    today = mm + '/' + dd + '/' + yyyy;
+
                     if (u1.innerHTML === "-") {
-                        u1.innerHTML = x.value
+                        u1.innerHTML = "&#128100;" + "  "+ x.value + "<br>" + today
                     }
+
+                    var t1 = document.getElementById("1stthread")
+                    var z1 = document.getElementById("thread1")
+                    var r1 = document.getElementById("rate1");
+                    if (t1.innerHTML !== "-") {
+                        t1.innerHTML = z1.value
+                        r1.innerHTML = "&#10084;&#65039;<br>&#128172; :1"
+                    }
+
                     var database = firebase.database();
 
                     var ref = database.ref('Thread');
@@ -93,8 +111,17 @@
                     var u2 = document.getElementById("user2")
                     var x = document.getElementById("user_name");
                     if (u2.innerHTML === "-") {
-                        u2.innerHTML = x.value
+                        u2.innerHTML = "&#128100;" + "  "+ x.value
                     }
+
+                    var t2 = document.getElementById("2ndthread")
+                    var z2 = document.getElementById("thread2")
+                    var r2 = document.getElementById("rate2");
+                    if (t2.innerHTML !== "-") {
+                        t2.innerHTML = z2.value
+                        r2.innerHTML = "&#10084;&#65039;<br>&#128172; :1"
+                    }
+
                     var database = firebase.database();
 
                     var ref = database.ref('Thread');
@@ -113,8 +140,17 @@
                     var u3 = document.getElementById("user3")
                     var x = document.getElementById("user_name");
                     if (u3.innerHTML === "-") {
-                        u3.innerHTML = x.value
+                        u3.innerHTML = "&#128100;" + "  "+ x.value
                     }
+
+                    var t3 = document.getElementById("3rdthread")
+                    var z3 = document.getElementById("thread3")
+                    var r3 = document.getElementById("rate3");
+                    if (t3.innerHTML !== "-") {
+                        t3.innerHTML = z3.value
+                        r3.innerHTML = "&#10084;&#65039;<br>&#128172; :1"
+                    }
+
                     var database = firebase.database();
 
                     var ref = database.ref('Thread');
@@ -133,8 +169,17 @@
                     var u4 = document.getElementById("user4")
                     var x = document.getElementById("user_name");
                     if (u4.innerHTML === "-") {
-                        u4.innerHTML = x.value
+                        u4.innerHTML = "&#128100;" + "  "+ x.value
                     }
+
+                    var t4 = document.getElementById("4ththread")
+                    var z4 = document.getElementById("thread4")
+                    var r4 = document.getElementById("rate4");
+                    if (t4.innerHTML !== "-") {
+                        t4.innerHTML = z4.value
+                        r4.innerHTML = "&#10084;&#65039;<br>&#128172; :1"
+                    }
+
                     var database = firebase.database();
 
                     var ref = database.ref('Thread');
@@ -146,8 +191,7 @@
                         name: sname,
                     }
                     ref.push(data);
-                }
-
+                };
         </script>
         <center><div style="display: flex; flex-wrap: wrap;">
             <button type="button" class="button" id="clickMe" style="color: white; background-color: #00b300; border: 10px; border-color: black; height: 50px; width: 200px;text-align: center; text-decoration: none;display: inline-block;font-size: 24px; margin: 4px 2px; cursor: pointer;">Start New Topic</button>
@@ -180,23 +224,23 @@
           </tr>
           <tr>
             <td id = "user1">-</td>
-            <td><input type="text" placeholder="Link here" id="thread1"><button type="button" class="button" id="1thread" onclick = "writeData1()">Publish Thread</button></td>
-            <td>&#10084;&#65039;<br>&#128172;</td>
+            <td id = "1stthread"><input type="text" placeholder="Link here" id="thread1"><button type="button" class="button" id="1thread" onclick = "writeData1()">Publish Thread</button></td>
+            <td id = "rate1">&#10084;&#65039;<br>&#128172;</td>
           </tr>
           <tr>
             <td id = "user2">-</td>
-            <td><input type="text" placeholder="Link here" id="thread2"><button type="button" class="button" id="2thread" onclick = "writeData2()">Publish Thread</button></td>
-            <td>&#10084;&#65039;<br>&#128172;</td>
+            <td id = "2ndthread"><input type="text" placeholder="Link here" id="thread2"><button type="button" class="button" id="2thread" onclick = "writeData2()">Publish Thread</button></td>
+            <td id = "rate2">&#10084;&#65039;<br>&#128172;</td>
           </tr>
           <tr>
             <td id = "user3">-</td>
-            <td><input type="text" placeholder="Link here" id="thread3"><button type="button" class="button" id="3thread" onclick = "writeData3()">Publish Thread</button></td>
-            <td>&#10084;&#65039;<br>&#128172;</td>
+            <td id = "3rdthread"><input type="text" placeholder="Link here" id="thread3"><button type="button" class="button" id="3thread" onclick = "writeData3()">Publish Thread</button></td>
+            <td id = "rate3">&#10084;&#65039;<br>&#128172;</td>
           </tr>
           <tr>
             <td id = "user4">-</td>
-            <td><input type="text" placeholder="Link here" id="thread4"><button type="button" class="button" id="4thread" onclick = "writeData4()">Publish Thread</button></td>
-            <td>&#10084;&#65039;<br>&#128172;</td>
+            <td id = "4ththread"><input type="text" placeholder="Link here" id="thread4"><button type="button" class="button" id="4thread" onclick = "writeData4()">Publish Thread</button></td>
+            <td id = "rate4">&#10084;&#65039;<br>&#128172;</td>
           </tr>
         </table>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
