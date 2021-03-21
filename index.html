@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>
-            SURVIVOR CENTRAL
-        </title>
-
         <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-analytics.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-database.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+        <title>
+            SURVIVOR CENTRAL
+        </title>
         
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -87,6 +87,66 @@
                     }
                     ref.push(data);
                 }
+                
+                function writeData2() {
+
+                    var u2 = document.getElementById("user2")
+                    var x = document.getElementById("user_name");
+                    if (u2.innerHTML === "-") {
+                        u2.innerHTML = x.value
+                    }
+                    var database = firebase.database();
+
+                    var ref = database.ref('Thread');
+
+                    var sname = document.getElementById("thread2").value;
+
+                    var data = 
+                    {
+                        name: sname,
+                    }
+                    ref.push(data);
+                }
+
+                function writeData3() {
+
+                    var u3 = document.getElementById("user3")
+                    var x = document.getElementById("user_name");
+                    if (u3.innerHTML === "-") {
+                        u3.innerHTML = x.value
+                    }
+                    var database = firebase.database();
+
+                    var ref = database.ref('Thread');
+
+                    var sname = document.getElementById("thread3").value;
+
+                    var data = 
+                    {
+                        name: sname,
+                    }
+                    ref.push(data);
+                }
+
+                function writeData4() {
+
+                    var u4 = document.getElementById("user4")
+                    var x = document.getElementById("user_name");
+                    if (u4.innerHTML === "-") {
+                        u4.innerHTML = x.value
+                    }
+                    var database = firebase.database();
+
+                    var ref = database.ref('Thread');
+
+                    var sname = document.getElementById("thread4").value;
+
+                    var data = 
+                    {
+                        name: sname,
+                    }
+                    ref.push(data);
+                }
 
         </script>
         <center><div style="display: flex; flex-wrap: wrap;">
@@ -123,6 +183,21 @@
             <td><input type="text" placeholder="Link here" id="thread1"><button type="button" class="button" id="1thread" onclick = "writeData1()">Publish Thread</button></td>
             <td>&#10084;&#65039;<br>&#128172;</td>
           </tr>
+          <tr>
+            <td id = "user2">-</td>
+            <td><input type="text" placeholder="Link here" id="thread2"><button type="button" class="button" id="2thread" onclick = "writeData2()">Publish Thread</button></td>
+            <td>&#10084;&#65039;<br>&#128172;</td>
+          </tr>
+          <tr>
+            <td id = "user3">-</td>
+            <td><input type="text" placeholder="Link here" id="thread3"><button type="button" class="button" id="3thread" onclick = "writeData3()">Publish Thread</button></td>
+            <td>&#10084;&#65039;<br>&#128172;</td>
+          </tr>
+          <tr>
+            <td id = "user4">-</td>
+            <td><input type="text" placeholder="Link here" id="thread4"><button type="button" class="button" id="4thread" onclick = "writeData4()">Publish Thread</button></td>
+            <td>&#10084;&#65039;<br>&#128172;</td>
+          </tr>
         </table>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
@@ -137,6 +212,5 @@
             });
 
         </script>
-
     </body>
 </html>
