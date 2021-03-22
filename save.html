@@ -1,0 +1,54 @@
+                    var database = firebase.database();
+
+                    var ref = database.ref('Thread1');
+
+                    var sname = document.getElementById("thread1").value;
+
+                    var data = 
+                    {
+                        name: sname,
+                    }
+                    ref.push(data);
+
+
+					var t1 = document.getElementById("1stthread")
+                    var z1 = document.getElementById("thread1")
+                    var r1 = document.getElementById("rate1");
+                    if (t1.innerHTML !== "-") {
+                        t1.innerHTML = z1.value
+                        r1.innerHTML = "&#10084;&#65039;<br>&#128172; :1"
+                    }
+
+                    var u1 = document.getElementById("user1")
+                    var x = document.getElementById("user_name")
+                    var today = new Date();
+                    var dd = String(today.getDate()).padStart(2, '0');
+                    var mm = String(today.getMonth() + 1).padStart(2, '0');
+                    var yyyy = today.getFullYear();
+
+                    today = mm + '/' + dd + '/' + yyyy;
+
+                    if (u1.innerHTML === "-") {
+                        u1.innerHTML = "&#128100;" + "  "+ x.value + "<br>" + today
+                    }
+
+
+                    firebase.database().ref("Thread1").once('name', function(snapshot) {
+                        snapshot.forEach(function(childSnapshot)
+                        {
+                            var childKey = childSnapshot.key;
+                            var childData = childSnapshot.val();
+                            document.getElementById("1stthread").innerHTML = childData['name']
+                        })
+                    })
+
+
+
+                    if (document.getElementById("1stthread").innerHTML = "Posted") {
+                        document.getElementById("1stthread").innerHTML = "Link"
+                    }
+
+
+                    if (document.getElementById("test").innerHTML = "Test") {
+                        document.getElementById("test").innerHTML = "This is Working"
+                    }

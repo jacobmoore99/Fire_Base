@@ -53,7 +53,6 @@
         </div>
         
         <script>
-        // Your web app's Firebase configuration
         var firebaseConfig = {
             apiKey: "AIzaSyAl6cJJZxneO2pVcCcNgrsDqfIXpgwA1Zg",
             authDomain: "setup-11eef.firebaseapp.com",
@@ -67,10 +66,22 @@
           // Initialize Firebase
           firebase.initializeApp(firebaseConfig);
           firebase.analytics();
-        </script>
+          var database = firebase.database();
 
-        <script>
                 function writeData1() {
+
+                    firebase.database().ref("Threads").update({
+                        onet: document.getElementById("thread1").value
+                    });
+
+                    var t1 = document.getElementById("1stthread")
+                    var z1 = document.getElementById("thread1")
+                    var r1 = document.getElementById("rate1");
+                    var l1 = '<span><button type = "button" class="button" id = "1rate" onclick = "like1()" style = "color: white; background-color: #add8e6; border: 10px; border-color: black; height: 15px; width: 30px;text-align: center; text-decoration: none;display: inline-block;font-size: 10px; margin: 4px 2px; cursor: pointer;">Like</button></span>';
+                    if (t1.innerHTML !== "-") {
+                        t1.innerHTML = "Posted"
+                        r1.innerHTML = "&#128172; :1<br>&#10084;&#65039; " + l1
+                    }
 
                     var u1 = document.getElementById("user1")
                     var x = document.getElementById("user_name")
@@ -84,118 +95,168 @@
                     if (u1.innerHTML === "-") {
                         u1.innerHTML = "&#128100;" + "  "+ x.value + "<br>" + today
                     }
-
-                    var t1 = document.getElementById("1stthread")
-                    var z1 = document.getElementById("thread1")
-                    var r1 = document.getElementById("rate1");
-                    if (t1.innerHTML !== "-") {
-                        t1.innerHTML = z1.value
-                        r1.innerHTML = "&#10084;&#65039;<br>&#128172; :1"
-                    }
-
-                    var database = firebase.database();
-
-                    var ref = database.ref('Thread');
-
-                    var sname = document.getElementById("thread1").value;
-
-                    var data = 
-                    {
-                        name: sname,
-                    }
-                    ref.push(data);
                 }
                 
+                function getData() {
+
+                    var t1 = document.getElementById("1stthread")
+                    firebase.database().ref('/').once('value', function(snapshot) {
+                        snapshot.forEach(function(childSnapshot)
+                        {
+                            var childKey = childSnapshot.key;
+                            var childData = childSnapshot.val();
+                            t1.innerHTML = childData['onet'];
+                        });
+                    });
+
+
+                    var t2 = document.getElementById("2ndthread")
+                    firebase.database().ref('/').once('value', function(snapshot) {
+                        snapshot.forEach(function(childSnapshot)
+                        {
+                            var childKey = childSnapshot.key;
+                            var childData = childSnapshot.val();
+                            t2.innerHTML = childData['twot']
+                        });
+                    });
+
+
+                    var t3 = document.getElementById("3rdthread")
+                    firebase.database().ref('/').once('value', function(snapshot) {
+                        snapshot.forEach(function(childSnapshot)
+                        {
+                            var childKey = childSnapshot.key;
+                            var childData = childSnapshot.val();
+                            t3.innerHTML = childData['threet']
+                        });
+                    });
+
+
+                    var t4 = document.getElementById("4ththread")
+                    firebase.database().ref('/').once('value', function(snapshot) {
+                        snapshot.forEach(function(childSnapshot)
+                        {
+                            var childKey = childSnapshot.key;
+                            var childData = childSnapshot.val();
+                            t4.innerHTML = childData['fourt']
+                        });
+                    });
+                }
+
                 function writeData2() {
 
-                    var u2 = document.getElementById("user2")
-                    var x = document.getElementById("user_name");
-                    if (u2.innerHTML === "-") {
-                        u2.innerHTML = "&#128100;" + "  "+ x.value
-                    }
+                    firebase.database().ref("Threads").update({
+                        twot: document.getElementById("thread2").value
+                    })
 
                     var t2 = document.getElementById("2ndthread")
                     var z2 = document.getElementById("thread2")
                     var r2 = document.getElementById("rate2");
+                    var l2 = '<span><button type = "button" class="button" id = "2rate" onclick = "like2()" style = "color: white; background-color: #add8e6; border: 10px; border-color: black; height: 15px; width: 30px;text-align: center; text-decoration: none;display: inline-block;font-size: 10px; margin: 4px 2px; cursor: pointer;">Like</button></span>';
                     if (t2.innerHTML !== "-") {
-                        t2.innerHTML = z2.value
-                        r2.innerHTML = "&#10084;&#65039;<br>&#128172; :1"
+                        t2.innerHTML = "Posted"
+                        r2.innerHTML = "&#128172; :1<br>&#10084;&#65039; " + l2
                     }
 
-                    var database = firebase.database();
+                    var u2 = document.getElementById("user2")
+                    var x = document.getElementById("user_name")
+                    var today = new Date();
+                    var dd = String(today.getDate()).padStart(2, '0');
+                    var mm = String(today.getMonth() + 1).padStart(2, '0');
+                    var yyyy = today.getFullYear();
 
-                    var ref = database.ref('Thread');
+                    today = mm + '/' + dd + '/' + yyyy;
 
-                    var sname = document.getElementById("thread2").value;
-
-                    var data = 
-                    {
-                        name: sname,
+                    if (u2.innerHTML === "-") {
+                        u2.innerHTML = "&#128100;" + "  "+ x.value + "<br>" + today
                     }
-                    ref.push(data);
                 }
 
                 function writeData3() {
 
-                    var u3 = document.getElementById("user3")
-                    var x = document.getElementById("user_name");
-                    if (u3.innerHTML === "-") {
-                        u3.innerHTML = "&#128100;" + "  "+ x.value
-                    }
+                    firebase.database().ref("Threads").update({
+                        threet: document.getElementById("thread3").value
+                    })
 
                     var t3 = document.getElementById("3rdthread")
                     var z3 = document.getElementById("thread3")
                     var r3 = document.getElementById("rate3");
+                    var l3 = '<span><button type = "button" class="button" id = "3rate" onclick = "like3()" style = "color: white; background-color: #add8e6; border: 10px; border-color: black; height: 15px; width: 30px;text-align: center; text-decoration: none;display: inline-block;font-size: 10px; margin: 4px 2px; cursor: pointer;">Like</button></span>';
                     if (t3.innerHTML !== "-") {
-                        t3.innerHTML = z3.value
-                        r3.innerHTML = "&#10084;&#65039;<br>&#128172; :1"
+                        t3.innerHTML = "Posted"
+                        r3.innerHTML = "&#128172; :1<br>&#10084;&#65039; " + l3
                     }
 
-                    var database = firebase.database();
+                    var u3 = document.getElementById("user3")
+                    var x = document.getElementById("user_name")
+                    var today = new Date();
+                    var dd = String(today.getDate()).padStart(2, '0');
+                    var mm = String(today.getMonth() + 1).padStart(2, '0');
+                    var yyyy = today.getFullYear();
 
-                    var ref = database.ref('Thread');
-
-                    var sname = document.getElementById("thread3").value;
-
-                    var data = 
-                    {
-                        name: sname,
+                    today = mm + '/' + dd + '/' + yyyy;
+                    
+                    if (u3.innerHTML === "-") {
+                        u3.innerHTML = "&#128100;" + "  "+ x.value + "<br>" + today
                     }
-                    ref.push(data);
                 }
 
                 function writeData4() {
 
-                    var u4 = document.getElementById("user4")
-                    var x = document.getElementById("user_name");
-                    if (u4.innerHTML === "-") {
-                        u4.innerHTML = "&#128100;" + "  "+ x.value
-                    }
+                    firebase.database().ref("Threads").update({
+                        fourt: document.getElementById("thread4").value
+                    })
 
                     var t4 = document.getElementById("4ththread")
                     var z4 = document.getElementById("thread4")
                     var r4 = document.getElementById("rate4");
+                    var l4 = '<span><button type = "button" class="button" id = "4rate" onclick = "like4()" style = "color: white; background-color: #add8e6; border: 10px; border-color: black; height: 15px; width: 30px;text-align: center; text-decoration: none;display: inline-block;font-size: 10px; margin: 4px 2px; cursor: pointer;">Like</button></span>';
                     if (t4.innerHTML !== "-") {
-                        t4.innerHTML = z4.value
-                        r4.innerHTML = "&#10084;&#65039;<br>&#128172; :1"
+                        t4.innerHTML = "Posted"
+                        r4.innerHTML = "&#128172; :1<br>&#10084;&#65039; " + l4
                     }
 
-                    var database = firebase.database();
+                    var u4 = document.getElementById("user4")
+                    var x = document.getElementById("user_name")
+                    var today = new Date();
+                    var dd = String(today.getDate()).padStart(2, '0');
+                    var mm = String(today.getMonth() + 1).padStart(2, '0');
+                    var yyyy = today.getFullYear();
 
-                    var ref = database.ref('Thread');
+                    today = mm + '/' + dd + '/' + yyyy;
 
-                    var sname = document.getElementById("thread4").value;
-
-                    var data = 
-                    {
-                        name: sname,
+                    if (u4.innerHTML === "-") {
+                        u4.innerHTML = "&#128100;" + "  "+ x.value + "<br>" + today
                     }
-                    ref.push(data);
+
+                }
+
+                function like1() {
+                    var r1 = document.getElementById("rate1");
+                    var l1 = '<span><button type = "button" class="button" id = "1rate" onclick = "like1()" style = "color: white; background-color: #add8e6; border: 10px; border-color: black; height: 15px; width: 30px;text-align: center; text-decoration: none;display: inline-block;font-size: 10px; margin: 4px 2px; cursor: pointer;">Like</button></span>';
+                    r1.innerHTML = "&#128172; :1<br>&#10084;&#65039; :1" + l1
+                }
+
+                function like2() {
+                    var r2 = document.getElementById("rate2");
+                    var l2 = '<span><button type = "button" class="button" id = "2rate" onclick = "like2()" style = "color: white; background-color: #add8e6; border: 10px; border-color: black; height: 15px; width: 30px;text-align: center; text-decoration: none;display: inline-block;font-size: 10px; margin: 4px 2px; cursor: pointer;">Like</button></span>';
+                    r2.innerHTML = "&#128172; :1<br>&#10084;&#65039; :1" + l2
+                }
+
+                function like3() {
+                    var r3 = document.getElementById("rate3");
+                    var l3 = '<span><button type = "button" class="button" id = "3rate" onclick = "like3()" style = "color: white; background-color: #add8e6; border: 10px; border-color: black; height: 15px; width: 30px;text-align: center; text-decoration: none;display: inline-block;font-size: 10px; margin: 4px 2px; cursor: pointer;">Like</button></span>';
+                    r3.innerHTML = "&#128172; :1<br>&#10084;&#65039; :1" + l3
+                }
+
+                function like4() {
+                    var r4 = document.getElementById("rate4");
+                    var l4 = '<span><button type = "button" class="button" id = "4rate" onclick = "like4()" style = "color: white; background-color: #add8e6; border: 10px; border-color: black; height: 15px; width: 30px;text-align: center; text-decoration: none;display: inline-block;font-size: 10px; margin: 4px 2px; cursor: pointer;">Like</button></span>';
+                    r4.innerHTML = "&#128172; :1<br>&#10084;&#65039; :1" + l4
                 };
         </script>
         <center><div style="display: flex; flex-wrap: wrap;">
-            <button type="button" class="button" id="clickMe" style="color: white; background-color: #00b300; border: 10px; border-color: black; height: 50px; width: 200px;text-align: center; text-decoration: none;display: inline-block;font-size: 24px; margin: 4px 2px; cursor: pointer;">Start New Topic</button>
-            <input style="font-size:18px; height: 50px; width: 200px; background-color: white; margin: 4px 2px" type="text" id="search" name ="search">
+            <button type="button" class="button" id="clickMe" onclick = "getData()" style="color: white; background-color: #00b300; border: 10px; border-color: black; height: 50px; width: 200px;text-align: center; text-decoration: none;display: inline-block;font-size: 24px; margin: 4px 2px; cursor: pointer;">Show Threads</button>
         </div></center>
         <style>
         table {
@@ -225,24 +286,25 @@
           <tr>
             <td id = "user1">-</td>
             <td id = "1stthread"><input type="text" placeholder="Link here" id="thread1"><button type="button" class="button" id="1thread" onclick = "writeData1()">Publish Thread</button></td>
-            <td id = "rate1">&#10084;&#65039;<br>&#128172;</td>
+            <td id = "rate1">&#128172;<br>&#10084;&#65039; <button type = "button" class="button" id = "1rate" onclick = "like1()" style = "color: white; background-color: #add8e6; border: 10px; border-color: black; height: 15px; width: 30px;text-align: center; text-decoration: none;display: inline-block;font-size: 10px; margin: 4px 2px; cursor: pointer;">Like</button></td>
           </tr>
           <tr>
             <td id = "user2">-</td>
             <td id = "2ndthread"><input type="text" placeholder="Link here" id="thread2"><button type="button" class="button" id="2thread" onclick = "writeData2()">Publish Thread</button></td>
-            <td id = "rate2">&#10084;&#65039;<br>&#128172;</td>
+            <td id = "rate2">&#128172;<br>&#10084;&#65039; <button type = "button" class="button" id = "2rate" onclick = "like2()" style = "color: white; background-color: #add8e6; border: 10px; border-color: black; height: 15px; width: 30px;text-align: center; text-decoration: none;display: inline-block;font-size: 10px; margin: 4px 2px; cursor: pointer;">Like</button></td>
           </tr>
           <tr>
             <td id = "user3">-</td>
             <td id = "3rdthread"><input type="text" placeholder="Link here" id="thread3"><button type="button" class="button" id="3thread" onclick = "writeData3()">Publish Thread</button></td>
-            <td id = "rate3">&#10084;&#65039;<br>&#128172;</td>
+            <td id = "rate3">&#128172;<br>&#10084;&#65039; <button type = "button" class="button" id = "3rate" onclick = "like3()" style = "color: white; background-color: #add8e6; border: 10px; border-color: black; height: 15px; width: 30px;text-align: center; text-decoration: none;display: inline-block;font-size: 10px; margin: 4px 2px; cursor: pointer;">Like</button></td>
           </tr>
           <tr>
             <td id = "user4">-</td>
             <td id = "4ththread"><input type="text" placeholder="Link here" id="thread4"><button type="button" class="button" id="4thread" onclick = "writeData4()">Publish Thread</button></td>
-            <td id = "rate4">&#10084;&#65039;<br>&#128172;</td>
+            <td id = "rate4">&#128172;<br>&#10084;&#65039; <button type = "button" class="button" id = "4rate" onclick = "like4()" style = "color: white; background-color: #add8e6; border: 10px; border-color: black; height: 15px; width: 30px;text-align: center; text-decoration: none;display: inline-block;font-size: 10px; margin: 4px 2px; cursor: pointer;">Like</button></td>
           </tr>
         </table>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
         <script>
